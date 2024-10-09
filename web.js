@@ -1,52 +1,77 @@
 let bagItems;
 onLoad();
 
-function onLoad(){
-bagItems= localStorage.getItem('bagItems')?JSON.parse(localStorage.getItem('bagItems')):[];
-displayItemsOnHomePage();
-displayBagItems();
-}
-
-function addToBag(itemid){
-  bagItems.push(itemid);
-  localStorage.setItem('bagItems' ,JSON.stringify(bagItems));
+function onLoad() {
+  let bagItemsStr = localStorage.getItem('bagItems');
+  bagItems = bagItemsStr ? JSON.parse(bagItemsStr) : [];
+  displayItemsOnHomePage();
   displayBagItems();
+  displayBagIcon();
+  loadBagItemObjects();
 }
 
-function displayBagItems(){
-  let bagElement=document.querySelector('.bag-item-count');
-  if (bagItems.length>0) {
-    bagElement.style.visibility='visible';
-    bagElement.innerText=bagItems.length;
-  }
-  else{
-    bagElement.style.visibility='hidden';
-  } 
+function loadBagItemObjects() {
+  console.log(bagItems);
+  bagItemObjects = bagItems.map(itemId => {
+    for (let i = 0; i < items.length; i++) {
+      if (itemId == items[i].id) {
+        return items[i];
+      }
+    }
+  });
 }
 
-function displayItemsOnHomePage(){
-  let productFlexElement=document.querySelector('#product-flex');
-  if (!productFlexElement){
+
+function displayBagItems() {
+  let bagElement = document.querySelector('.bag-item-count');
+  bagElement.innerText = bagItems.length;
+}
+
+
+// function displayBagIcon() {
+//   let bagIcon = document.querySelector('.bag-item-count');
+//   if (bagItems.length > 0) {
+//     bagIcon.style.visibility = 'visible';
+//     bagIcon.innerHTML = bagItems.length;
+//   }
+//   else {
+//     bagIcon.style.visibility = 'hidden';
+//   }
+// }
+
+function addToBag(itemid) {
+  bagItems.push(itemid);
+  localStorage.setItem('bagItems', JSON.stringify(bagItems));
+  console.log(`Your bag contains ${bagItems.length} items and ${itemid} has been added recently!`)
+  
+  let bagElement = document.querySelector('.bag-item-count');
+  bagElement.innerText = bagItems.length;
+ // alert(`You have added ${bagItems.item_name}}`);
+  displayBagItems();
+  displayBagIcon();
+}
+
+function displayItemsOnHomePage() {
+  let productFlexElement = document.querySelector('#product-flex');
+  if (!productFlexElement) {
     return;
   }
 
-  let innerHtml='';
-    items.forEach(product => {
-    innerHtml +=   `
+  let innerHtml = '';
+  items.forEach(product => {
+    innerHtml += `
     <div class="product-item">
-    <img src="${product.image}" alt="Product 1">
+    <img class="product-img" src="${product.image}" alt="Product 1">
+    <div class="rating">
+         ${product.rating.stars} ★ | ${product.rating.reviews}
+      </div>
     <h3>${product.company_name}</h3>
     <h5>${product.item_name}</h5>
     <p id="price">₹${product.current_price}</p>
     <button class="add-to-bag" onclick="addToBag(${product.id})" >Add to Cart</button>
     </div>`
   });
-  
-  
-  
-  productFlexElement.innerHTML= innerHtml;
+  productFlexElement.innerHTML = innerHtml;
 }
 
 
-  
-  

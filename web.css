@@ -3,14 +3,15 @@
   margin: 0;
 }
 
-nav {
-  /* background-color: powderblue; */
-  background: linear-gradient(to right, #0de7a2, #de4b63); /* Define the gradient */
+/* nav {
+
+  background: linear-gradient(to right, #0de7a2, #de4b63); 
   color: #fff;
   padding: 10px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  
 }
 
 .logo {
@@ -18,17 +19,11 @@ nav {
 }
 
 #logo img {
-  width: 50px;
-  height: 50px;
-  border-radius: 20px;
+  width: 10px;
+  height: 10px;
+  ;
 }
 
-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-}
 
 nav li {
   margin-right: 10px;
@@ -43,39 +38,6 @@ nav a:hover {
   text-decoration: none;
   color: darkblue;
   
-}
-
-.search-box {
-  margin: 0px 150px;
-  display: flex;
-  align-items: center;
-  
-}
-
-.search-box input {
-  padding: 5px;
-  border: 2px solid darkblue;
-  border-radius: 5px;
-  margin-right: 5px;
-  width: 250px;
-  height: 25px;
-  padding-left: 10px;
-}
-
-.search-box button {
-  background-color: darkblue;
-  color: whitesmoke;
-  border: none;
-  border-radius: 7px;
-  padding: 10px;
-  cursor: pointer;
-  height: 40px;
-  border: 2px solid darkblue;
-}
-
-.search-box button:active {
-  background-color: lightskyblue;
-  color: darkblue;
 }
 
 .icons {
@@ -106,6 +68,236 @@ nav a:hover {
 
 .icons i {
   font-size: 18px;
+} */
+
+
+/* General styling for the navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: linear-gradient(to right, #0de7a2, #de4b63); 
+  color: white;
+  font-family: 'Arial', sans-serif;
+}
+
+nav a:hover {
+  text-decoration: none;
+  color: darkblue;
+}
+
+.logo a img {
+  max-width: 150px;
+  width: 100px;
+  background-color: pink;
+}
+
+#displaytext {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.icons {
+  display: flex;
+  gap: 20px;
+}
+
+.icons a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.icons a i {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+#icon-name {
+  display: none; /* Hidden on small screens, shown on larger screens */
+}
+
+.bag-item-count {
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  font-size: 12px;
+  padding: 3px 6px;
+  position: absolute;
+  top: -8px;
+  right: -10px;
+}
+
+/* Responsive Styling */
+
+/* Medium devices (tablets, 768px and above) */
+@media (max-width: 768px) {
+  nav {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  #displaytext {
+      font-size: 20px;
+      margin-top: 10px;
+  }
+
+  .icons {
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+  }
+
+  .icons a {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  #icon-name {
+      display: block; /* Show icon name on medium screens */
+      font-size: 12px;
+  }
+
+  .bag-item-count {
+      font-size: 10px;
+  }
+}
+
+/* Small devices (mobile phones, 480px and below) */
+@media (max-width: 480px) {
+  nav {
+      flex-direction: column;
+      padding: 10px 10px;
+  }
+
+  .logo a img {
+      max-width: 120px;
+  }
+
+  #displaytext {
+      font-size: 18px;
+      margin-top: 10px;
+  }
+
+  .icons {
+      justify-content: center;
+      gap: 10px;
+  }
+
+  #icon-name {
+      display: none; /* Hide icon names on very small screens */
+  }
+
+  .bag-item-count {
+      font-size: 10px;
+  }
+}
+
+/* Mobile-first design for very small screens (below 320px) */
+@media (max-width: 320px) {
+  nav {
+      padding: 8px;
+  }
+
+  #displaytext {
+      font-size: 16px;
+  }
+
+  .logo a img {
+      max-width: 100px;
+  }
+
+  .icons {
+      flex-direction: row;
+      gap: 8px;
+  }
+
+  .icons a i {
+      font-size: 18px;
+  }
+}
+
+.section1 {
+ 
+  width: 1080px;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  margin: 0px auto;
+  .img-slider img {
+  height: 720px;
+  width: 1080px;
+  margin-top: 20px;
+
+}
+}
+
+.img-slider {
+  display: flex;
+  float: left;
+  position: relative;
+  width: 1080px;
+  height: 720px;
+  animation-name: slide;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  transition-duration: 2s;
+}
+
+
+
+@keyframes slide {
+  0% {
+      left: 0px;
+  }
+
+  15% {
+      left: 0px;
+  }
+
+  20% {
+      left: -1080px;
+  }
+
+  32% {
+      left: -1080px;
+  }
+
+  35% {
+      left: -2160px;
+  }
+
+  47% {
+      left: -2160px;
+  }
+
+  50% {
+      left: -3240px;
+  }
+
+  63% {
+      left: -3240px;
+  }
+
+  66% {
+      left: -4320px;
+  }
+
+  79% {
+      left: -4320px;
+  }
+
+  82% {
+      left: -5400px;
+  }
+
+  100% {
+      left: 0px;
+  }
 }
 footer {
   background-color: #333;
@@ -217,9 +409,18 @@ margin-top: 40px;
   margin-right: 20px;
 }
 
-.product-item img {
+.product-img {
   width: 100%;
   height: auto;
+  overflow: hidden;
+  transition-duration: 0.8s;
+  
+}
+
+ .product-img:hover{
+  transform: scale(1.1);
+  transition-duration: 0.8s;
+  border-radius: 12px;
 }
 
 .product-item h3 {
@@ -247,7 +448,9 @@ margin-top: 40px;
   background-color: red;
 }
 body {
-  background-color: thistle;
+  
+  
+  background-image: url('https://img.freepik.com/premium-photo/pink-white-building-with-red-background_337384-117808.jpg?w=1060');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -266,9 +469,9 @@ h5{
 }
 
 #logo-image{
-  width: 100px;
+  
   border-radius: 2px;
-  border: 2px solid darkblue;
+  
 }
 
 #heading{
@@ -304,7 +507,9 @@ h5{
   border-radius: 10px;
   margin-left: 0px;
   margin-top: 0px;
-  font-size: 14px;
-  top: -40px;
+  font-size: 16px;
 text-align: center;
+}
+.rating{
+  margin-top: 10px;
 }

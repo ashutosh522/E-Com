@@ -1,11 +1,3 @@
-// let bagTextElement=document.querySelector('#bag-text');
-//     bagTextElement.innerText=`Your Cart contains ${bagItem.length} quantity.`
-
-// let itemNameElement=document.querySelector('#item-name');
-// itemNameElement.innerHTML=`${product.item_name}`;
-// let itemPriceElement=document.querySelector('#item-price');
-// let companyNameElement=document.querySelector('#company-name');
-
 
 let bagItemObjects;
 let noOfItems=document.querySelector('#bag-text');
@@ -31,11 +23,13 @@ function displayBagSummary() {
   let finalPayment = totalMRP - totalDiscount 
 if(bagItemObjects.length===0){
     bagSummaryElement.innerHTML='';
-    noOfItems.innerHTML='Your cart is empty! Please shop!'
+    noOfItems.innerHTML=`Your cart is empty! Please shop! <a class="continue-shop" href="./index.html">Continue Shopping</a>`
+    
 }
 else{
 
-noOfItems.innerHTML=`Your cart contains ${bagItems.length} item(s)`
+noOfItems.innerHTML=`Your cart contains ${bagItems.length} item(s) <a class="continue-shop" href="./index.html">Continue Shopping</a>`;
+
   bagSummaryElement.innerHTML = `
     <div class="bag-details-container">
     <div class="price-header">PRICE DETAILS (${totalItem} Items) </div>
@@ -88,16 +82,18 @@ function displayBagItems() {
 function removeFromBag(itemId) {
   bagItems = bagItems.filter(bagItemId => bagItemId != itemId);
   localStorage.setItem('bagItems', JSON.stringify(bagItems));
+  // window.alert(`${item.item_name} has been removed from your cart!`)
   loadBagItemObjects();
   displayBagIcon();
   displayBagItems();
   displayBagSummary();
+  onLoad();
 }
 
 function displayBagIcon(){
     let bagIcon = document.querySelector('.bag-item-count');
     if(bagItemObjects.length===0){
-        bagIcon.style.display = 'none';
+        bagIcon.style.visibility = 'none';
     }
     bagIcon.innerHTML=bagItemObjects.length;
 
@@ -111,7 +107,7 @@ function generateItemHTML(item) {
       <img class="bag-item-img" src="./${item.image}">
     </div>
     <div class="item-right-part">
-      <div class="company">${item.company}</div>
+      <div class="company">${item.company_name}</div>
       <div class="item-name">${item.item_name}</div>
       <div class="price-container">
         <span class="current-price">Rs ${item.current_price}</span>
@@ -127,6 +123,6 @@ function generateItemHTML(item) {
       </div>
     </div>
 
-    <div class="remove-from-cart" onclick="removeFromBag(${item.id})">x</div>
+    <div class="remove-from-cart" onclick="removeFromBag(${item.id})">❌</div>
   </div>`;
 }
